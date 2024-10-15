@@ -32,25 +32,12 @@
             font-size: 3vw;
             color: #555;
         }
-        #endSessionButton {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 10px 15px;
-            font-size: 16px;
-            background-color: #f44336;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
     <img id="logo" src="icon.png" alt="Your Logo" />
     <div id="otp"></div>
     <div id="countdown"></div>
-    <button id="endSessionButton">End Kiosk Session</button>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -111,13 +98,6 @@
             }
 
             updateOTP();
-
-            // Add end session functionality
-            document.getElementById('endSessionButton').addEventListener('click', function() {
-                chrome.storage.sync.set({kioskSessionEnded: true}, function() {
-                    alert('Kiosk session has been ended. Students will be logged out.');
-                });
-            });
         });
     </script>
 </body>
