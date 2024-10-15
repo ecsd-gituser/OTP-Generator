@@ -32,7 +32,7 @@
             font-size: 3vw;
             color: #555;
         }
-        #signOutButton {
+        #endSessionButton {
             position: absolute;
             top: 20px;
             right: 20px;
@@ -50,7 +50,7 @@
     <img id="logo" src="icon.png" alt="Your Logo" />
     <div id="otp"></div>
     <div id="countdown"></div>
-    <button id="signOutButton">Sign Out Kiosk</button>
+    <button id="endSessionButton">End Kiosk Session</button>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -112,10 +112,11 @@
 
             updateOTP();
 
-            // Add sign-out functionality
-            document.getElementById('signOutButton').addEventListener('click', function() {
-                localStorage.setItem('kioskSignedOut', 'true');
-                alert('Kiosk app has been signed out. Please close this window.');
+            // Add end session functionality
+            document.getElementById('endSessionButton').addEventListener('click', function() {
+                chrome.storage.sync.set({kioskSessionEnded: true}, function() {
+                    alert('Kiosk session has been ended. Students will be logged out.');
+                });
             });
         });
     </script>
